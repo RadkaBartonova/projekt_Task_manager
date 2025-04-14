@@ -1,0 +1,64 @@
+ukoly = []
+
+# Funkce pro přidání úkolu: volba 1
+def pridat_ukol():
+    while True:
+        nazev_ukolu = input("Zadejte název úkolu: ")
+        popis_ukolu = input("Zadejte popis úkolu: ")
+
+        if nazev_ukolu == "" or popis_ukolu == "":
+            print("Název ani popis nesmí být prázdné. Zkuste to znovu prosím")
+        else:
+            ukoly.append({"nazev": nazev_ukolu, "popis": popis_ukolu})
+            print(f"Úkol '{nazev_ukolu}' byl úspěšně přidán")
+            print("Jak chcete pokračovat dál?")
+            break
+
+# Funkce pro zobrazení úkolu: volba 2
+def zobrazit_ukoly():
+    if ukoly:
+        print("Vaše úkoly v seznamu: ")
+        print(ukoly)
+        print("Jak chcete pokračovat dál?")
+    else:
+        print("Seznam úkolů je prázdný")
+        print("Jak chcete pokračovat dál?")
+
+# Funkce pro zobrazení úkolů: volba 3
+def odstranit_ukol():
+    if ukoly:
+        smazani_ukolu = int(input("Jaký úkol chcete smazat? (číslo úkolu): "))
+        if len(ukoly) <= int(smazani_ukolu) - 1:
+            print("Zadali jste číslo úkolu, které není v seznamu")
+            print("Jak chcete pokračovat dál?")
+        else:
+            print(f"Úkol {ukoly[smazani_ukolu - 1]} byl smazán")
+            ukoly.pop(smazani_ukolu - 1)
+    else:
+        print("Seznam úkolů je prázdný")
+        print("Jak chcete pokračovat dál?")
+
+def hlavni_menu():
+    print("Vítejte v aplikaci Task Manager, vyberte prosím číslo úkolu")
+    while True:
+        print('''
+            1 - Přidat úkol
+            2 - Zobrazit úkol
+            3 - Odstranit úkol
+            4 - Ukončit program
+            ''')
+        cislo_ukolu = int(input("Zadejte číslo úkolu: "))
+        print("--------------------------------------")
+        if cislo_ukolu == 1:
+            pridat_ukol()
+        elif cislo_ukolu == 2:
+            zobrazit_ukoly()
+        elif cislo_ukolu == 3:
+            odstranit_ukol()
+        elif cislo_ukolu == 4:
+            print("Program byl ukončen")
+            break
+        else:
+            print("Zadejte správné číslo úkolu")
+
+hlavni_menu()
